@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>latest</LangVersion>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GiG.Core.ApplicationMetrics" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.ApplicationMetrics.Prometheus" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.Configuration" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.DistributedTracing.Activity" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.DistributedTracing.OpenTelemetry.Exporters.Zipkin" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.HealthChecks.AspNetCore" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.Hosting" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.Hosting.AspNetCore" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.Logging.All" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.MultiTenant.Activity" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.Validation.FluentValidation.Web" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.Web.Docs" Version="1.6.1.1271" />
+    <PackageReference Include="GiG.Core.Web.Hosting" Version="1.6.1.1271" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.0.1" />
+    <PackageReference Include="GiG.Core.Web.Versioning" Version="1.6.1.1271" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  
+</Project>
