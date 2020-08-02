@@ -13,8 +13,12 @@ using GiG.Core.Web.Docs.Extensions;
 using GiG.Core.Web.Hosting.Extensions;
 using GiG.Core.Web.Versioning.Extensions;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SampleApi.Extensions;
+using SampleApi.Middleware;
+using SampleApi.TenantResolvers;
 
 namespace SampleApi
 {
@@ -29,7 +33,7 @@ namespace SampleApi
         {
             // Forwarded Headers
             services.ConfigureForwardedHeaders();
-
+            
             // Info Management
             services.ConfigureInfoManagement(Configuration);
 
@@ -50,12 +54,14 @@ namespace SampleApi
                 .AddControllers()
                 .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Startup>());
 
+            services.AddMultiTenancy();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
             app.UseForwardedHeaders();
+            app.UseMultitenancy<IAppTenant>();
             app.UsePathBaseFromConfiguration();
             app.UseRouting();
             app.UseHttpApplicationMetrics();
@@ -69,6 +75,8 @@ namespace SampleApi
                 endpoints.MapHealthChecks();
                 endpoints.MapApplicationMetrics();
             });            
+            
+            app.UseMiddleware<LogTenantMiddleware>();
         }
     }
 }

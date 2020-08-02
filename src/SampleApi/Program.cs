@@ -25,6 +25,11 @@ namespace SampleApi
                 })
                 .ConfigureExternalConfiguration()
                 .ConfigureLogging()
-                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://localhost:5000", "http://localhost:5001", "http://localhost:5002",
+                        "http://localhost:5003");
+                });
     }
 }
