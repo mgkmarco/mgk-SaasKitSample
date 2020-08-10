@@ -1,1 +1,23 @@
 version: '3.4'
+
+services:
+
+  sample-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - TenantApis__Foo=http://sample-foo-api:8080
+      - TenantApis__Bar=http://sample-bar-api:8080
+    ports:
+      - "4000:8080"
+      
+  sample-foo-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5100:8080"
+        
+  sample-bar-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6100:8080"

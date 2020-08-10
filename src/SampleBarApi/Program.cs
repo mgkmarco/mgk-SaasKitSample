@@ -6,7 +6,7 @@ using GiG.Core.MultiTenant.Activity.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace SampleApi
+namespace SampleBarApi
 {
     public static class Program
     {
@@ -25,9 +25,6 @@ namespace SampleApi
                 })
                 .ConfigureExternalConfiguration()
                 .ConfigureLogging()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
     }
 }

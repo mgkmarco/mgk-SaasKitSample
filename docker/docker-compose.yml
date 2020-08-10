@@ -1,1 +1,34 @@
 version: '3.4'
+
+services:
+      
+  sample-foo-api:
+    image: sample-foo-api
+    build:
+      context: ..
+      dockerfile: ./src/SampleFooApi/Dockerfile
+    networks:
+      - intra-service-communication
+
+  sample-bar-api:
+    image: sample-bar-api
+    build:
+      context: ..
+      dockerfile: ./src/SampleBarApi/Dockerfile
+    networks:
+      - intra-service-communication
+      
+  sample-api:
+    image: sample-api
+    build:
+      context: ..
+      dockerfile: ./src/SampleApi/Dockerfile
+    networks:
+      - intra-service-communication
+    depends_on:
+      - sample-foo-api
+      - sample-bar-api
+      
+networks:
+  intra-service-communication:
+    driver: bridge
