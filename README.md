@@ -8,28 +8,21 @@ You can build and run the application using one of the following methods.
 
 ```
 cd docker
-docker-compose up --build
-```
-
-### Dotnet CLI
-```
-dotnet run --project src/SaasKitSample.Host/SaasKitSample.Host.csproj
-```
-
-## Tests
-You can run all the integration and unit tests using the following commands:
-
-### Docker (same as build server) - preferred
-
-```
-# Build solution
-docker build . -t gig-core:test --target test
-# Copy Artifacts
-docker run --rm gig-core:test
+docker-compose up -d --force-recreate
 ```
 
 ### Dotnet CLI
 
 ```
 dotnet test --filter "Category=Unit|Category=Integration|Category=Component" SaasKitSample.sln 
+```
+
+### Demoing the application
+```
+- In the swagger hit the main API... which is hosted at localhost:4000/api-docs
+- Leave the X-Tenant-ID blank... and this should return a response from the DEFAULT tenant
+- Put "Foo" as X-Tenant-ID... and this should return a response from the FOO tenant
+- Put "Bar" as X-Tenant-ID... and this should return a response from the Bar tenant
+
+If you find any issues please let me know. Keep in mind that the tenant is cached, therefore in the middleware it is going to be resolved only once (until the cahce is evicted)
 ```
